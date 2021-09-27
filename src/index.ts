@@ -1,4 +1,5 @@
 import { Invoice } from "./classes";
+import { HasFormatter } from "./interfaces";
 
 // interface
 interface IsPerson {
