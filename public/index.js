@@ -1,35 +1,36 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var classes_1 = require("./classes");
-var myself = {
-    name: "Captain",
-    age: 31,
-    speak: function (text) {
-        console.log(text);
-    },
-    spend: function (amount) {
-        console.log("I spent " + amount);
-        return amount;
-    },
-};
-var someone;
-var greetPerson = function (person) {
-    console.log("Hello, " + person.name);
-};
-greetPerson(myself);
-var form = document.querySelector(".new-item-form");
-var type = document.querySelector("#type");
-var toFrom = document.querySelector("#toFrom");
-var details = document.querySelector("#details");
-var amount = document.querySelector("#amount");
-// when wanting numbers from value attach valueAsNumber instead of just value
-form.addEventListener("submit", function (e) {
+import { Invoice } from "./classes/Invoice.js";
+import { Payment } from "./classes/Payment.js";
+import { ListTemplate } from "./classes/ListTemplate.js";
+const form = document.querySelector(".new-item-form");
+// inputs
+const type = document.querySelector("#type");
+const tofrom = document.querySelector("#tofrom");
+const details = document.querySelector("#details");
+const amount = document.querySelector("#amount");
+// list template instance
+const ul = document.querySelector("ul");
+const list = new ListTemplate(ul);
+form.addEventListener("submit", (e) => {
     e.preventDefault();
-    console.log(type.value, toFrom.value, details.value, amount.valueAsNumber);
+    let values;
+    values = [tofrom.value, details.value, amount.valueAsNumber];
+    let doc;
+    if (type.value === "invoice") {
+        doc = new Invoice(...values);
+    }
+    else {
+        doc = new Payment(...values);
+    }
+    list.render(doc, type.value, "end");
 });
-var invOne = new classes_1.Invoice("Jennifer", "work on body", 400);
-var invTwo = new classes_1.Invoice("Ari", "work on other body", 500);
-console.log(invOne, invTwo);
-var invoices = [];
-invoices.push(invOne);
-invoices.push(invTwo);
+// TUPLES
+let arr = ["ryu", 25, true];
+arr[0] = false;
+arr[1] = "yoshi";
+arr = [30, false, "yoshi"];
+let tup = ["ryu", 25, true];
+// tup[0] = false;
+tup[0] = "ken";
+let student;
+//student = [23564, 'chun-li'];
+student = ["chun-li", 23564];

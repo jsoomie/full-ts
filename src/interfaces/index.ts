@@ -1,1 +1,0 @@
-export { HasFormatter } from "./HasFormatter";
