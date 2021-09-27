@@ -1,5 +1,35 @@
 import { Invoice } from "./classes";
 
+// interface
+interface IsPerson {
+  name: string;
+  age: number;
+  speak(a: string): void;
+  spend(a: number): number;
+}
+
+const myself: IsPerson = {
+  name: "Captain",
+  age: 31,
+
+  speak(text: string): void {
+    console.log(text);
+  },
+
+  spend(amount: number): number {
+    console.log(`I spent ${amount}`);
+    return amount;
+  },
+};
+
+let someone: IsPerson;
+
+const greetPerson = (person: IsPerson) => {
+  console.log(`Hello, ${person.name}`);
+};
+
+greetPerson(myself);
+
 const form = document.querySelector(".new-item-form") as HTMLFormElement;
 const type = document.querySelector("#type") as HTMLSelectElement;
 const toFrom = document.querySelector("#toFrom") as HTMLInputElement;
